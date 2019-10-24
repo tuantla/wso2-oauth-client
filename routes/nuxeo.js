@@ -12,11 +12,17 @@ let ingestResponse = {
   "state": "PUBLISHED"
 }
 
+let vaultToken= {
+  jwt: "Bearer token============"
+}
+
 router.post('/ingest', (req, res) => {
-  console.log("headers: >> " + JSON.stringify(req.headers));
-  console.log("body: >> " + JSON.stringify(req.body))
-  loggly.log("headers:" + JSON.stringify(req.headers) + ", body:" + JSON.stringify(req.body))
   return res.send(JSON.stringify(ingestResponse));
+});
+
+
+router.post('/jwt-generate', (req, res) => {
+  return res.send(JSON.stringify(jwt));
 });
 
 
