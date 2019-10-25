@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
+var woodlot = require('./routes/log');
+let logger = woodlot.logger
+let middlewareLogger = woodlot.middlewareLogger
 
 var routes = require('./routes/index');
 var nuxeo = require('./routes/nuxeo');
@@ -8,7 +10,7 @@ var nuxeo = require('./routes/nuxeo');
 var app = express();
 
 app.use(express.json({type: '*/*'}))
-app.use(logger('dev'));
+app.use(middlewareLogger);
 
 app.use('/', routes);
 app.use('/nuxeo', nuxeo);

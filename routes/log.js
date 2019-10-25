@@ -1,14 +1,21 @@
-var loggly = require('loggly');
+var woodlot = require('woodlot')
 
-var client = loggly.createClient({
-    token: "3a26a0e8-9526-425b-9231-ff5ea70017a9",
-    subdomain: "robin84",
-    // auth: {
-    //     username: "your-username",
-    //     password: "your-password"
-    // },
-    tags: ['fake-rest'],
-    json: true
+
+var logger = woodlot.customLogger({
+    streams: ['./logs/custom.log'],
+    stdout: true,
+    format: {
+        type: 'json'
+    }
 });
 
-module.exports = client
+var middlewareLogger = woodlot.middlewareLogger({
+        streams: ['./logs/custom.log'],
+        stdout: true,
+        format: {
+            type: 'json'
+        }
+    }
+)
+
+module.exports = {logger, middlewareLogger}

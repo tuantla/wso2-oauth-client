@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var logger = require('./log').logger;
 
 router.get('/', function(req, res) {
   res.send('respond with a resource');
@@ -17,15 +18,12 @@ let vaultToken= {
 }
 
 router.post('/ingest', (req, res) => {
-  console.log(JSON.stringify({header: req.headers, body: req.body}));
-
-  return res.send(JSON.stringify(ingestResponse));
+   return res.json(ingestResponse);
 });
 
 
 router.post('/jwt-generate', (req, res) => {
-  console.log(JSON.stringify({header: req.headers, body: req.body}));
-  return res.send(JSON.stringify(jwt));
+  return res.json(vaultToken)
 });
 
 
