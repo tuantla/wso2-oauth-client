@@ -1,12 +1,12 @@
 {
   "name": "nodejs-stub",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
-  "scripts": {
+  "scripts":   {
     "start": "node ./bin/www",
     "build": "echo build done"
   },
-  "dependencies": {
+  "dependencies":   {
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "loggly": "^1.1.1",
