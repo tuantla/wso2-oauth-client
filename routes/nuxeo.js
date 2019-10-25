@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const loggly = require('./log')
+
 
 router.get('/', function(req, res) {
   res.send('respond with a resource');
@@ -17,17 +17,14 @@ let vaultToken= {
 }
 
 router.post('/ingest', (req, res) => {
-  console.log("headers: >> " + JSON.stringify(req.headers));
-  console.log("body: >> " + JSON.stringify(req.body))
-  loggly.log("headers:" + JSON.stringify(req.headers) + ", body:" + JSON.stringify(req.body))
+  console.log(JSON.stringify({header: req.headers, body: req.body}));
+
   return res.send(JSON.stringify(ingestResponse));
 });
 
 
 router.post('/jwt-generate', (req, res) => {
-  console.log("headers: >> " + JSON.stringify(req.headers));
-  console.log("body: >> " + JSON.stringify(req.body))
-  loggly.log("headers:" + JSON.stringify(req.headers) + ", body:" + JSON.stringify(req.body))
+  console.log(JSON.stringify({header: req.headers, body: req.body}));
   return res.send(JSON.stringify(jwt));
 });
 

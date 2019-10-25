@@ -7,4 +7,4 @@ COPY bin bin
 COPY routes routes
 COPY app.js app.js
 EXPOSE 8080
-CMD [ "node", "node ./bin/www" ]
+CMD [ "node", "./bin/www" ]
