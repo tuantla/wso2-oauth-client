@@ -1,5 +1,12 @@
 {
-  "name": "nodejs-stub",
+  "name": "stub-service",
+  "api": {
+    "groupName": "Platform Services",
+    "iconName": "book",
+    "tags": "stub-service",
+    "isApi": "true",
+    "postmanCollectionId": "null"
+  },
   "version": "0.0.2",
   "private": true,
   "scripts":   {
