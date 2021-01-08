@@ -1,2 +1,2 @@
-@Library('node-build-plugin')_
-nodejsPlugin(type:'nodejs')
+@Library('build-plugin@nodejs-release')_
+buildPlugin(type:'java')
