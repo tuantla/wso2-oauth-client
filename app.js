@@ -6,7 +6,8 @@ let middlewareLogger = woodlot.middlewareLogger
 
 var routes = require('./routes/index');
 var nuxeo = require('./routes/nuxeo');
-var healthCheck = require('./routes/health');
+var healthCheck = require('./routes/health')
+let bcInvoiceApi = require('./routes/bc-invoice');
 
 var app = express();
 
@@ -16,6 +17,7 @@ app.use(middlewareLogger);
 app.use('/', routes);
 app.use('/nuxeo', nuxeo);
 app.use('/health', healthCheck)
+app.use('/api/invoice-account-notes', bcInvoiceApi)
 
 
 const favicon = new Buffer.from('AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA', 'base64');
