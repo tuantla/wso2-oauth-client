@@ -13,7 +13,7 @@ router.get('/:id', function(req, res) {
         "issueDate": "2020-07-29T16:00:00.000000Z",
         "dueDate": "2020-09-02",
         "amount": {
-          "amount": 14.12,
+          "amount": 200,
           "currency": "AUD"
         },
         "purchaseOrderNumber": "IM-016",
@@ -109,7 +109,7 @@ router.get('/:id', function(req, res) {
         "id": "7UtsSSzglvdZWggqTymrpA",
         "attributes": {
           "name": "Brenntag Australia",
-          "salesOrganization": "NZ01",
+          "salesOrganization": "AU01",
           "distributionChannel": "AU",
           "division": "00"
         }
