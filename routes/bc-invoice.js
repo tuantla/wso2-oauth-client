@@ -13,7 +13,7 @@ router.get('/:id', function(req, res) {
         "issueDate": "2020-07-29T16:00:00.000000Z",
         "dueDate": "2020-09-02",
         "amount": {
-          "amount": 200,
+          "amount": 19.12,
           "currency": "AUD"
         },
         "purchaseOrderNumber": "IM-016",
