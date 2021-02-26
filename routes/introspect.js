@@ -4,7 +4,12 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 
-  res.json(req.headers)
+  let rawJWT = req.headers['x-jwt-assertion'].split(".")
+
+  let buff = Buffer.from(rawJWT[1], 'base64');
+  let jsonJWT = buff.toString('utf8');
+
+  res.json(JSON.parse(jsonJWT))
 });
 
 
