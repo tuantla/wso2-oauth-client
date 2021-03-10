@@ -117,7 +117,7 @@ router.get('/:id', function(req, res) {
         "id": "7UtsSSzglvdZWggqTymrpA",
         "attributes": {
           "name": "Brenntag Australia",
-          "salesOrganization": "MG01",
+          "salesOrganization": "AU01",
           "distributionChannel": "AU",
           "division": "00"
         }
