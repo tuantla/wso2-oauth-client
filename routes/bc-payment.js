@@ -32,7 +32,7 @@ const paymentResponse = {
 
 
 router.post('/payments', function(req, res) {
-  res.json(paymentResponse)
+  res.status(400).json({})
 })
 
 router.patch('/payments/:id', function(req, res) {
