@@ -10,6 +10,7 @@ var healthCheck = require('./routes/health')
 let bcInvoiceApi = require('./routes/bc-invoice');
 let bcPaymentApi = require('./routes/bc-payment');
 let introspect = require('./routes/introspect')
+let fractal = require('./routes/fractal')
 var app = express();
 
 app.use(express.json({type: '*/*'}))
@@ -21,6 +22,7 @@ app.use('/health', healthCheck)
 app.use('/api/invoice-account-notes', bcInvoiceApi)
 app.use('/digib-core', bcPaymentApi)
 app.use('/jwt', introspect)
+app.use('/fractal', fractal)
 
 const favicon = new Buffer.from('AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA', 'base64');
  app.get("/favicon.ico", function(req, res) {
