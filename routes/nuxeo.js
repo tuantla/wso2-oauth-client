@@ -1,30 +1,26 @@
 var express = require('express');
+const kafka = require('kafka-node')
+
 var router = express.Router();
 
-var logger = require('./log').logger;
 
-router.get('/', function(req, res) {
-  res.send('respond with a resource');
+const kafkaClient = new kafka.KafkaClient({kafkaHost:'localhost:9092'});
+const kafkaProducer = new kafka.Producer(kafkaClient);
+kafkaProducer.on('ready', () => {
+  console.log('kafka ready')
+}).on('error', (err) => {
+  console.error(err)
+})
+
+
+
+
+router.post('/', (req, res) => {
+
+
+  res.status(204).send({})
 });
 
-
-let ingestResponse = {
-  "uid": "a4a93bf0-15c6-47e9-9483-ba3f26cd5ebf",
-  "state": "PUBLISHED"
-}
-
-let vaultToken= {
-  jwt: "Bearer token============"
-}
-
-router.post('/ingest', (req, res) => {
-   return res.json(ingestResponse);
-});
-
-
-router.post('/jwt-generate', (req, res) => {
-  return res.json(vaultToken)
-});
 
 
 module.exports = router;

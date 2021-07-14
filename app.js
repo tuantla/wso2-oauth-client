@@ -11,6 +11,7 @@ let bcInvoiceApi = require('./routes/bc-invoice');
 let bcPaymentApi = require('./routes/bc-payment');
 let introspect = require('./routes/introspect')
 let fractal = require('./routes/fractal')
+let kafka = require('./routes/kafka')
 var app = express();
 
 app.use(express.json({type: '*/*'}))
@@ -23,6 +24,7 @@ app.use('/api/invoice-account-notes', bcInvoiceApi)
 app.use('/digib-core', bcPaymentApi)
 app.use('/jwt', introspect)
 app.use('/fractal', fractal)
+app.use('/kafka', kafka)
 
 const favicon = new Buffer.from('AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA', 'base64');
  app.get("/favicon.ico", function(req, res) {
