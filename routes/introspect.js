@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
   let buff = Buffer.from(rawJWT[1], 'base64');
   let jsonJWT = buff.toString('utf8');
 
-  res.set('request-headers', Buffer.from(JSON.stringify(req.headers)).toString('base64'));
+  res.set('x-real-ip', req.headers['x-real-ip']);
   res.set('rawJWT', rawJWT);
 
   res.json(JSON.parse(jsonJWT))
