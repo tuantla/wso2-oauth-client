@@ -7,4 +7,4 @@ COPY bin bin
 COPY routes routes
 COPY app.js app.js
 EXPOSE 3000
-CMD [ "node", "./bin/www" ]
+CMD [ "node", "--max-http-header-size","48000", "./bin/www" ]

@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
   let jsonJWT = buff.toString('utf8');
 
   res.set('client_ip', req.headers['client_ip']);
-  res.set('rawJWT', req.headers['rawJWT']);
+  res.set('rawJWT', rawJWT);
 
   res.json(JSON.parse(jsonJWT))
 });
