@@ -1,30 +1,29 @@
-var express = require('express');
-var path = require('path');
-var woodlot = require('./routes/log');
-let logger = woodlot.logger
-let middlewareLogger = woodlot.middlewareLogger
+const express          = require('express');
+const mustacheExpress  = require('mustache-express');
+const path             = require('path');
+const woodlot          = require('./routes/log');
+const cookieSession    = require('cookie-session')
+const logger           = woodlot.logger
+const middlewareLogger = woodlot.middlewareLogger
 
-var routes = require('./routes/index');
-var nuxeo = require('./routes/nuxeo');
+var routes      = require('./routes/index');
 var healthCheck = require('./routes/health')
-let bcInvoiceApi = require('./routes/bc-invoice');
-let bcPaymentApi = require('./routes/bc-payment');
-let introspect = require('./routes/introspect')
-let fractal = require('./routes/fractal')
-let kafka = require('./routes/kafka')
+var oauth       = require('./routes/oauth')
+
 var app = express();
 
+app.engine('mustache', mustacheExpress());
+app.set('view engine', 'mustache');
+app.set('views', __dirname + '/views');
+
 app.use(express.json({type: '*/*'}))
-app.use(middlewareLogger);
+app.use(cookieSession({signed:false, maxAge: 365 * 24 * 60 * 60 * 1000})) // 1 year
+//app.use(middlewareLogger);
 
 app.use('/', routes);
-app.use('/nuxeo', nuxeo);
 app.use('/health', healthCheck)
-app.use('/api/invoice-account-notes', bcInvoiceApi)
-app.use('/digib-core', bcPaymentApi)
-app.use('/jwt', introspect)
-app.use('/fractal', fractal)
-app.use('/kafka', kafka)
+app.use('/oauth', oauth)
+
 
 const favicon = new Buffer.from('AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA', 'base64');
  app.get("/favicon.ico", function(req, res) {
