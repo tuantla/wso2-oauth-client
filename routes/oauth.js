@@ -18,7 +18,7 @@ let oauth2Callback = 'http://localhost:5000/oauth/callback'
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 
-const buildAuthorizeEndpoint = (req)=> {
+const buildAuthorizeEndpoint = (req, regPin)=> {
     let extras =
         {
             response_type: 'code',
@@ -30,11 +30,9 @@ const buildAuthorizeEndpoint = (req)=> {
     if (!req.session) {
         req.session = {}
     }
-    console.log(req.session.regDevice)
-    console.log(req.session)
+
     if (!req.session.regDevice) {
         extras.regDevice = true
-        req.session.regDevice = true
     }
 
     if (req.session.sub) {
@@ -51,7 +49,8 @@ router.get('/', (req, res) => {
     let url = buildAuthorizeEndpoint(req)
 
     res.render("oauth/index",
-        {url:url,
+        {
+         url:url,
          session: JSON.stringify(req.session, null, 4),
          deviceId,
         },);
@@ -103,6 +102,7 @@ router.get('/callback', async (req, res) => {
         let payload = JSON.parse(Buffer.from(id_token.split('.')[1],"base64").toString('ascii'))
         let sub = payload.sub
         req.session.sub = sub
+        req.session.regDevice = true
 
         res.render('oauth/authenticated', {token: JSON.stringify(response.data, null, 4)});
     } catch (e) {
