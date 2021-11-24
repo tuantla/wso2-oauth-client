@@ -18,6 +18,19 @@ let oauth2Callback = 'http://localhost:5000/oauth/callback'
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 
+const buildAuthorizeUrl = ()=> {
+    let extras =
+        {
+            response_type: 'code',
+            scope: 'openid',
+            tenantDomain:'carbon.super',
+            prompt: 'login',
+        }
+
+    return  `${authorizeEndpoint}?client_id=${clientId}&redirect_uri=${oauth2Callback}&${querystring.stringify(extras)}`
+}
+
+
 const buildAuthorizeEndpoint = (req, regPin)=> {
     let extras =
         {
@@ -42,6 +55,7 @@ const buildAuthorizeEndpoint = (req, regPin)=> {
     return  `${authorizeEndpoint}?client_id=${clientId}&redirect_uri=${oauth2Callback}&${querystring.stringify(extras)}`
 }
 
+
 router.get('/', (req, res) => {
     if (!req.session) {
         req.session = {}
@@ -51,6 +65,7 @@ router.get('/', (req, res) => {
     res.render("oauth/index",
         {
          url:url,
+         authorizeUrl: buildAuthorizeUrl(),
          session: JSON.stringify(req.session, null, 4),
          deviceId,
         },);
