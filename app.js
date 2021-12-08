@@ -9,6 +9,7 @@ const middlewareLogger = woodlot.middlewareLogger
 var routes      = require('./routes/index');
 var healthCheck = require('./routes/health')
 var oauth       = require('./routes/oauth')
+const recaptcha = require('./routes/google-recaptcha')
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(cookieSession({signed:false, maxAge: 365 * 24 * 60 * 60 * 1000})) // 1 y
 app.use('/', routes);
 app.use('/health', healthCheck)
 app.use('/oauth', oauth)
+app.use('/recaptcha', recaptcha)
 
 
 const favicon = new Buffer.from('AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA', 'base64');

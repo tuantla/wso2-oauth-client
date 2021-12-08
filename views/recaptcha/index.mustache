@@ -1,0 +1,21 @@
+<html>
+    <head>
+     <script src="https://www.google.com/recaptcha/api.js?&render=6Lfl84IdAAAAAAJEBZyq68a0CdOg3BEbpHicgBmE"></script>
+    </head>
+ <body>
+
+ <script>
+ grecaptcha.ready(function() {
+           grecaptcha.execute('6Lfl84IdAAAAAAJEBZyq68a0CdOg3BEbpHicgBmE', {action: 'submit'}).then(function(token) {
+              document.getElementById("aaa").innerHTML = token
+           });
+         });
+
+ </script>
+
+
+
+<xmp id ="aaa"></xmp>
+<div id ="review_recaptcha"></div>
+
+</html>
