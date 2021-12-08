@@ -22,7 +22,7 @@ const buildAuthorizeUrl = ()=> {
     let extras =
         {
             response_type: 'code',
-            scope: 'openid',
+            scope: 'openid account transaction',
             tenantDomain:'carbon.super',
             prompt: 'login',
         }
