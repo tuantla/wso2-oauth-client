@@ -4,18 +4,27 @@
     </head>
  <body>
 
- <script>
- grecaptcha.ready(function() {
-           grecaptcha.execute('6Lfl84IdAAAAAAJEBZyq68a0CdOg3BEbpHicgBmE', {action: 'submit'}).then(function(token) {
-              document.getElementById("aaa").innerHTML = token
-           });
-         });
+ <script type = "text/javascript">
+ document.addEventListener("DOMContentLoaded", function(){
+   grecaptcha.ready(function() {
+              grecaptcha.execute('6Lfl84IdAAAAAAJEBZyq68a0CdOg3BEbpHicgBmE', {action: 'submit'}).then(function(token) {
+                 document.getElementById("gtoken").innerHTML = token
+              });
+            });
+ });
 
+
+
+function copy() {
+  document.getElementById('gtoken').select()
+  document.execCommand('copy')
+}
  </script>
 
 
 
-<xmp id ="aaa"></xmp>
+<textarea onfocus="this.select();" onmouseup="return false;"  id ="gtoken" readonly= "true" rows="4" cols="50"></textarea><br/>
+<button onclick="copy()">copy</button>
 <div id ="review_recaptcha"></div>
 
 </html>
